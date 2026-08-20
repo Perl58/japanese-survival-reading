@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    "Segoe UI",
+    "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP",
+    Roboto,
+    sans-serif;
+}
+
+/* Correct-answer celebration for AvatarStage — scale/rotate only, no
+   translate, so it never exposes empty space beyond the already
+   object-cover-filled avatar art (see AvatarStage.tsx for why). */
+@keyframes celebrate-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.08) rotate(-2deg);
+  }
+}
+
+.celebrate-pulse {
+  animation: celebrate-pulse 0.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Falling sakura petals — see SakuraOverlay.tsx. `fixed inset-0` on the
+   overlay means 100vh is a good stand-in for "bottom of the visible app"
+   even though the app shell itself isn't always exactly the viewport
+   height (see App.tsx's sm:h-[780px]). */
+.sakura-petal {
+  top: -10%;
+  background: radial-gradient(circle at 30% 30%, #ffe3ee, #ffb6d5 60%, #ff8fc0);
+  border-radius: 100% 0 100% 0;
+  animation-name: sakura-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(var(--sakura-drift, 0px), 115vh) rotate(360deg);
+    opacity: 0.85;
+  }
+}

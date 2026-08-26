@@ -48,3 +48,7 @@ npm run dev
 npm run build          # dist/ に出力
 cd server && npm start # NODE_ENV=production で server/server.mjs が dist/ を配信
 ```
+
+## Privacy Policy
+
+This app does not collect personal user data. We use RevenueCat Ads for advertisement delivery. No sensitive data is stored or transmitted.

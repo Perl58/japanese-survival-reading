@@ -1,36 +1,62 @@
-# Japanese Survival Reading
+# Hibiki Japanese
 
-日本語初学者向けの実用的な読み取り練習アプリ。駅・空港・メニューなど、実際の場面で出会う漢字・カタカナを読む練習をします。
-先生キャラクター「ひびき先生」と一緒に、Stage 1（1-1〜1-4、全68問）で駅周りの日本語を学べます。
+**Read a little Japanese before your trip.**
 
-RevenueCat Shipaton 2026 向けに開発中。詳しい経緯・意思決定はプロジェクトの `phase-plan.md` を参照してください。
+Practice reading station signs, menus, and product labels you’ll see in Japan. Take it at your own pace. Recognizing even one word is a step forward.
 
-## 構成
+**[Get Hibiki Japanese on Google Play](https://play.google.com/store/apps/details?id=com.hibikilearn.pyanoki)**
 
-- `src/` — フロントエンド（Vite + React + TypeScript + Tailwind CSS v4）
-- `public/avatars/teacher/` — ひびき先生のイラストアバター（レイヤー合成用PNG）
-- `server/` — バックエンド（Express）。今のところ `/api/tts`（VOICEVOX音声合成のプロキシ）と `/api/health` のみ
+## Try a konbini shopping mission
 
-以前は Perxona Connect Kit のサンプル一式（`perxona-connect-kit-main/`）の中で開発していましたが、
-3Dアバター（Perxona presenter SDK）を独自イラストのアバターに置き換えたタイミングでPerxonaへの依存がなくなったため、
-このアプリ単体の独立プロジェクトとして分離しました（2026-08-20）。
+You’re at a convenience store in Japan. Your shopping list says **ツナマヨのおにぎりと麦茶**. Which pair goes in your basket?
 
-## セットアップ
+1. **うめのおにぎり ＋ 麦茶**
+2. **ツナマヨのおにぎり ＋ 緑茶**
+3. **ツナマヨのおにぎり ＋ 麦茶**
 
-### 1. VOICEVOXを起動する（音声機能を使う場合）
+<details>
+<summary>Check your basket</summary>
 
-https://voicevox.hiroshiba.jp からダウンロードして起動し、開いたままにしておく。
-ローカルAPI（`http://127.0.0.1:50021`）が自動的に立ち上がります。VOICEVOXが起動していなくても、
-アプリはキャプション＋口パクだけの表示にフォールバックするので動作します。
+The third pair is right. **ツナマヨのおにぎり** is a tuna mayo rice ball, and **麦茶（むぎちゃ）** is barley tea.
 
-### 2. フロントエンドを起動
+</details>
+
+At the register, you want to pay in cash. Which would you say, **現金で** or **カードで**?
+
+<details>
+<summary>Check your answer</summary>
+
+**現金で（げんきんで）** means “in cash.” You can say **現金でお願いします** (“I’ll pay in cash, please”).
+
+</details>
+
+## 日本語でのご紹介
+
+Hibiki Japaneseは、日本旅行で出会う駅の案内や商品の表示を、自分のペースで読む練習ができるAndroidアプリです。上のミニ体験では、コンビニでおにぎりとお茶を選び、レジで支払い方法を伝えます。旅先で「これ、読めた」「伝わった」をひとつずつ増やせるように作っています。
+
+## このリポジトリについて
+
+このリポジトリには、Hibiki Japaneseの出発点となった初期Web版 **Japanese Survival Reading** のソースコードを掲載しています。現在のAndroid版は、上のGoogle Playリンクからご覧いただけます。
+
+<details>
+<summary>初期Web版の開発経緯と起動手順</summary>
+
+初期Web版はRevenueCat Shipaton 2026に向けて開発しました。「ひびき先生」と一緒に、Stage 1（1-1〜1-4、全68問）で駅周りの日本語を学べます。Perxona Connect Kitのサンプル内で開発を始め、3Dアバターを独自イラストに置き換えたあと、2026年8月20日に独立したプロジェクトに分離しました。
+
+- `src/` — フロントエンド（Vite、React、TypeScript、Tailwind CSS v4）
+- `public/avatars/teacher/` — ひびき先生のイラスト
+- `server/` — Expressバックエンド（`/api/tts`、`/api/health`）
+
+音声機能を使う場合は、[VOICEVOX](https://voicevox.hiroshiba.jp/)を先に起動します。起動していない場合は、キャプションと口パクで表示します。
+
+リポジトリのルートでフロントエンドを起動します。
 
 ```bash
 npm install
 npm run dev
 ```
 
-### 3. バックエンドを起動（別ターミナル）
+別のターミナルでバックエンドを起動します。
 
 ```bash
 cd server
@@ -38,17 +64,10 @@ npm install
 npm run dev
 ```
 
-### 4. ブラウザで開く
+フロントエンドのターミナルに表示されたURL（通常は `http://localhost:5173`）をブラウザで開きます。
 
-フロントエンドのターミナルに表示されるURL（通常 `http://localhost:5173`）を開く。
+本番用にビルドする場合は、ルートで `npm run build` を実行します。出力先は `dist/` です。ビルド後は `cd server && npm start` で配信できます。
 
-## 本番ビルド
+</details>
 
-```bash
-npm run build          # dist/ に出力
-cd server && npm start # NODE_ENV=production で server/server.mjs が dist/ を配信
-```
-
-## Privacy Policy
-
-This app does not collect personal user data. We use RevenueCat Ads for advertisement delivery. No sensitive data is stored or transmitted.
+[プライバシーポリシー / Privacy Policy](./privacy-policy.md)
